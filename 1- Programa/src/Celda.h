@@ -80,6 +80,14 @@ public:
 	 */
 	~Celda();
 
+private:
+
+	/*
+	 * PRE:  Hay un portal abierto entre esta celda y otra.
+	 * POST: Destruye el extremo del portal que existe en esta Celda.
+	 */
+	void cerrarPortal();
+
 };
 
 #endif /* CELDA_H_ */

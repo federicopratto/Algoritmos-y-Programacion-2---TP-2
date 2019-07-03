@@ -211,7 +211,7 @@ void Tablero::eliminarFichaAlAzar(Jugada* posicion){
 
 	if(this->avanzarPisoHasta(posicion->darPiso())){
 
-		Celda* celda = this->tablero->obtenerCursor()->obtenerCursor()->obtener(posicion->darPiso());
+		Celda* celda = this->tablero->obtenerCursor()->obtenerCursor()->obtenerCursor();
 		posicion->cambiarJugador(celda->verContenido()->darJugador());
 	}
 }
@@ -228,7 +228,7 @@ void Tablero::eliminarJugadaAnterior(Jugada* jugadaAnterior){
 
 	if(this->avanzarPisoHasta(jugadaAnterior->darPiso())){
 
-		Celda* celda = this->tablero->obtenerCursor()->obtenerCursor()->obtener(jugadaAnterior->darPiso());
+		Celda* celda = this->tablero->obtenerCursor()->obtenerCursor()->obtenerCursor();
 		jugadaAnterior->cambiarJugador(celda->verContenido()->darJugador());
 
 	} else {
@@ -286,7 +286,7 @@ bool Tablero::sePuedenCambiarLasFichas(Jugada* ficha1, Jugada* ficha2, Consola* 
 	if(!hayFicha){
 		consola->mostrarEfectoJugada(ficha1, "No hay ninguna ficha en la posicion -> ");
 	} else {
-		hayFicha = this->posicionVacia(ficha2);
+		hayFicha = !this->posicionVacia(ficha2);
 		if(!hayFicha){
 			consola->mostrarEfectoJugada(ficha2, "No hay ninguna ficha en la posicion -> ");
 		}

@@ -68,24 +68,18 @@ void Dibujante::intercambiarFichas(Tablero* tablero, Jugada* ficha1, Jugada* fic
 	ruta += " Fila " + to_string(ficha1->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
-	Jugada* fichaAux = new Jugada(ficha1);
-	fichaAux->cambiarJugador(ficha2->darJugador());
-
-	this->insertarFicha(fichaAux, tablero);
+	this->insertarFicha(ficha1, tablero);
 	this->guardarImagen(ficha1->darNumero(), ficha1->darFila());
-	delete fichaAux;
+
 	delete this->imagenDelTablero;
 
 	ruta = "salida/Jugada " + to_string(ficha2->darNumero());
 	ruta += " Fila " + to_string(ficha2->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
-	fichaAux = new Jugada(ficha2);
-	fichaAux->cambiarJugador(ficha1->darJugador());
-
-	this->insertarFicha(fichaAux, tablero);
+	this->insertarFicha(ficha2, tablero);
 	this->guardarImagen(ficha2->darNumero(), ficha2->darFila());
-	delete fichaAux;
+
 	delete this->imagenDelTablero;
 }
 

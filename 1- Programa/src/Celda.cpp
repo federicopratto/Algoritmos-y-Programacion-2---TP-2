@@ -58,7 +58,20 @@ Celda::~Celda() {
 
 	if (this->portalEstaAbierto()) {
 
-		delete this->cruzarPortal()->indicarSalida()->portal;
-		delete this->portal;
+		Celda* ladoB = this->portal->indicarSalida();
+		ladoB->cerrarPortal();
+		this->cerrarPortal();
 	}
+}
+
+
+void Celda::cerrarPortal() {
+
+	if(!this->portalEstaAbierto()) {
+
+		throw string("Se intento cerrar un portal inexistente.");
+	}
+
+	delete this->portal;
+	this->portal = NULL;
 }
