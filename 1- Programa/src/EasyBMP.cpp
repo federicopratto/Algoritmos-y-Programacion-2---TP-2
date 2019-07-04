@@ -184,7 +184,7 @@ RGBApixel BMP::GetColor( int ColorNumber )
  Output.Red   = 255;
  Output.Green = 255;
  Output.Blue  = 255;
- Output.Alpha = 0;
+ Output.Alpha = 1;
  
  using namespace std;
  if( BitDepth != 1 && BitDepth != 4 && BitDepth != 8 )
@@ -414,7 +414,7 @@ bool BMP::SetSize(int NewWidth , int NewHeight )
    Pixels[i][j].Red = 255; 
    Pixels[i][j].Green = 255; 
    Pixels[i][j].Blue = 255; 
-   Pixels[i][j].Alpha = 0;    
+   Pixels[i][j].Alpha = 1;
   }
  }
 
@@ -891,7 +891,7 @@ bool BMP::ReadFromFile( const char* FileName )
    WHITE.Red = 255;
    WHITE.Green = 255;
    WHITE.Blue = 255;
-   WHITE.Alpha = 0;
+   WHITE.Alpha = 1;
    SetColor( n , WHITE );
   }
   
@@ -1105,7 +1105,7 @@ bool BMP::CreateStandardColorTable( void )
    Colors[i].Red = i*255;
    Colors[i].Green = i*255;
    Colors[i].Blue = i*255;
-   Colors[i].Alpha = 0;
+   Colors[i].Alpha = 1;
   } 
   return true;
  } 
@@ -1152,7 +1152,7 @@ bool BMP::CreateStandardColorTable( void )
   Colors[i].Blue = 192;
    
   for( i=0 ; i < 16 ; i++ )
-  { Colors[i].Alpha = 0; }
+  { Colors[i].Alpha = 1; }
   return true;
  }
 
@@ -1172,7 +1172,7 @@ bool BMP::CreateStandardColorTable( void )
      Colors[i].Red = j*32; 
      Colors[i].Green = k*32;
      Colors[i].Blue = ell*64;
-     Colors[i].Alpha = 0;
+     Colors[i].Alpha = 1;
      i++;
     }
    }
@@ -1552,7 +1552,7 @@ bool CreateGrayscaleColorTable( BMP& InputImage )
   TempColor.Red = TempBYTE;
   TempColor.Green = TempBYTE;
   TempColor.Blue = TempBYTE;
-  TempColor.Alpha = 0;
+  TempColor.Alpha = 1;
   InputImage.SetColor( i , TempColor );  
  }
  return true;

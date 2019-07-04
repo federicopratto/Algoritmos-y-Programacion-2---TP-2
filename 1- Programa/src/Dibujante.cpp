@@ -1,8 +1,7 @@
 
 #include "Dibujante.h"
 
-using std::string;
-using std::to_string;
+using std::stringstream;
 
 
 Dibujante::Dibujante(){
@@ -19,8 +18,8 @@ void Dibujante::cargarJugada(Tablero* tablero, Jugada* ultimaJugada){
 
 	this->crearImagenTablero(tablero, ultimaJugada);
 
-	string ruta = "salida/Jugada " + to_string(ultimaJugada->darNumero());
-	ruta += " Fila " + to_string(ultimaJugada->darFila()) + ".bmp";
+	string ruta = "salida/Jugada " + this->castearAString(ultimaJugada->darNumero());
+	ruta += " Fila " + this->castearAString(ultimaJugada->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
 	this->insertarFicha(ultimaJugada, tablero);
@@ -34,8 +33,8 @@ void Dibujante::borrarJugada(Tablero* tablero, Jugada* jugadaBorrada){
 
 	this->crearImagenTablero(tablero, jugadaBorrada);
 
-	string ruta = "salida/Jugada " + to_string(jugadaBorrada->darNumero());
-	ruta += " Fila " + to_string(jugadaBorrada->darFila()) + ".bmp";
+	string ruta = "salida/Jugada " + this->castearAString(jugadaBorrada->darNumero());
+	ruta += " Fila " + this->castearAString(jugadaBorrada->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
 	this->borrarFicha(jugadaBorrada, tablero);
@@ -49,8 +48,8 @@ void Dibujante::cambiarColorFicha(Tablero* tablero, Jugada* posicionFicha){
 
 	this->crearImagenTablero(tablero, posicionFicha);
 
-	string ruta = "salida/Jugada " + to_string(posicionFicha->darNumero());
-	ruta += " Fila " + to_string(posicionFicha->darFila()) + ".bmp";
+	string ruta = "salida/Jugada " + this->castearAString(posicionFicha->darNumero());
+	ruta += " Fila " + this->castearAString(posicionFicha->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
 	this->insertarFicha(posicionFicha, tablero);
@@ -64,8 +63,8 @@ void Dibujante::intercambiarFichas(Tablero* tablero, Jugada* ficha1, Jugada* fic
 
 	this->crearImagenTablero(tablero, ficha1);
 
-	string ruta = "salida/Jugada " + to_string(ficha1->darNumero());
-	ruta += " Fila " + to_string(ficha1->darFila()) + ".bmp";
+	string ruta = "salida/Jugada " + this->castearAString(ficha1->darNumero());
+	ruta += " Fila " + this->castearAString(ficha1->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
 	this->insertarFicha(ficha1, tablero);
@@ -73,8 +72,8 @@ void Dibujante::intercambiarFichas(Tablero* tablero, Jugada* ficha1, Jugada* fic
 
 	delete this->imagenDelTablero;
 
-	ruta = "salida/Jugada " + to_string(ficha2->darNumero());
-	ruta += " Fila " + to_string(ficha2->darFila()) + ".bmp";
+	ruta = "salida/Jugada " + this->castearAString(ficha2->darNumero());
+	ruta += " Fila " + this->castearAString(ficha2->darFila()) + ".bmp";
 
 	this->imagenDelTablero = new Imagen(ruta);
 	this->insertarFicha(ficha2, tablero);
@@ -99,8 +98,8 @@ void Dibujante::crearImagenTablero(Tablero* tablero, Jugada* ultimaJugada){
 
 	for(int fila = 1; fila <= tablero->darFilas(); fila++){
 
-		string ruta = "salida/Jugada " + to_string(ultimaJugada->darNumero() - 1);
-		ruta += " Fila " + to_string(fila) + ".bmp";
+		string ruta = "salida/Jugada " + this->castearAString(ultimaJugada->darNumero() - 1);
+		ruta += " Fila " + this->castearAString(fila) + ".bmp";
 
 		this->imagenDelTablero = new Imagen(ruta);
 		this->guardarImagen(ultimaJugada->darNumero(), fila);
@@ -223,8 +222,17 @@ void Dibujante::guardarImagen(int jugada, int fila){
 		throw string("Se ha intentado guardar una imagen en inexistente.");
 	}
 
-	string nombreArchivo = "Jugada " + to_string(jugada);
-	nombreArchivo += " Fila " + to_string(fila);
+	string nombreArchivo = "Jugada " + this->castearAString(jugada);
+	nombreArchivo += " Fila " + this->castearAString(fila);
 
 	this->imagenDelTablero->guardar(nombreArchivo);
+}
+
+
+string Dibujante::castearAString(int entero){
+
+	stringstream casteado;
+	casteado << entero;
+
+	return casteado.str();
 }

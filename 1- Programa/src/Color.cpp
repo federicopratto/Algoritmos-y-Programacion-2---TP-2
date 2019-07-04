@@ -8,6 +8,7 @@ Color::Color(ebmpBYTE rojo, ebmpBYTE verde, ebmpBYTE azul){
 	this->colores->Red = rojo;
 	this->colores->Green = verde;
 	this->colores->Blue = azul;
+	this->colores->Alpha = 1;
 }
 
 

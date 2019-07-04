@@ -56,10 +56,9 @@ unsigned int Imagen::darAncho(){
 
 void Imagen::cambiarColor(Color* colorAnterior, Color* nuevoColor){
 
+	for(unsigned int i = 0; i < this->darAncho(); i++){
 
-	for(int i = 0; i < (this->imagen->TellWidth()); i++){
-
-		for(int j = 0; j < (this->imagen->TellWidth()); j++){
+		for(unsigned int j = 0; j < this->darAlto(); j++){
 
 			if((this->imagen->GetPixel(i, j)) == (colorAnterior->obtenerPixel())){
 

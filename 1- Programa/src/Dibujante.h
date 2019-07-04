@@ -3,10 +3,13 @@
 #define DIBUJANTE_H_
 
 #include <string>
+#include <sstream>
 #include "Color.h"
 #include "Imagen.h"
 #include "Tablero.h"
 #include "Jugada.h"
+
+using std::string;
 
 
 class Dibujante {
@@ -159,6 +162,13 @@ private:
 	 * POST: guarda imagenDelTablero como un archivo .bmp
 	 */
 	void guardarImagen(int jugada, int fila);
+
+
+	/*
+	 * POST: Castea un numero entero a String para poder
+	 * 		 concatenarlo con una cadena de caracteres.
+	 */
+	string castearAString(int entero);
 
 };
 
